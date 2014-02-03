@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="title_screen_title_style">
+        <item name="android:textSize">@dimen/title_screen_title_size</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:padding">32dp</item>
+    </style>
+
+    <style name="game_text">
+        <item name="android:textSize">@dimen/game_text_size</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+</resources>

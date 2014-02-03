@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Blocks</string>
+    <string name="action_settings">Settings</string>
+    <string name="timed">Timed</string>
+    <string name="moves">Moves</string>
+    <string name="endless">Endless</string>
+
+    <string name="game_score">Score:</string>
+    <string name="game_moves">Moves:</string>
+    <string name="game_moves_left">Moves left:</string>
+    <string name="game_time">Time:</string>
+
+    <string name="zero">0</string>
+    <string name="thirty">30</string>
+    <string name="sixty">60</string>
+
+</resources>
