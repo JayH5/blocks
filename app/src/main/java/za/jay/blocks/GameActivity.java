@@ -7,13 +7,15 @@ import android.view.MenuItem;
 
 public class GameActivity extends Activity {
 
+    public static final String EXTRA_GAME_MODE = "extra_game_mode";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         if (savedInstanceState == null) {
-            int mode = getIntent().getIntExtra(GameFragment.ARG_MODE, 0);
+            GameMode mode = (GameMode) getIntent().getSerializableExtra(EXTRA_GAME_MODE);
             GameFragment frag = GameFragment.newInstance(mode);
             getFragmentManager().beginTransaction()
                     .add(R.id.container, frag)

@@ -22,15 +22,12 @@ public class GameFragment extends Fragment {
 
     private static final String TAG = "GameFragment";
 
-    public static final String ARG_MODE = "extra_mode";
-    public static final int MODE_TIMED = 1;
-    public static final int MODE_MOVES = 2;
-    public static final int MODE_ENDLESS = 3;
+    private static final String ARG_MODE = "extra_mode";
 
     private static final int WIDTH = 6;
     private static final int HEIGHT = 6;
 
-    private int mMode;
+    private GameMode mGameMode;
 
     private GridModel mModel;
     private GridLayout mGrid;
@@ -47,9 +44,9 @@ public class GameFragment extends Fragment {
 
     private ObjectAnimator mCountdownAnimator;
 
-    public static GameFragment newInstance(int mode) {
+    public static GameFragment newInstance(GameMode mode) {
         Bundle args = new Bundle();
-        args.putInt(ARG_MODE, mode);
+        args.putSerializable(ARG_MODE, mode);
 
         GameFragment frag = new GameFragment();
         frag.setArguments(args);
@@ -60,11 +57,11 @@ public class GameFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mMode = getArguments().getInt(ARG_MODE);
+        mGameMode = (GameMode) getArguments().getSerializable(ARG_MODE);
         mModel = new GridModel(WIDTH, HEIGHT, getResources().getIntArray(R.array.block_colours));
         mModel.setGridChangeListener(mGridChangeListener);
 
-        if (mMode == MODE_TIMED) {
+        if (mGameMode == GameMode.TIMED) {
             mCountdownAnimator = (ObjectAnimator)
                     AnimatorInflater.loadAnimator(getActivity(), R.animator.countdown);
             mCountdownAnimator.setTarget(this);
@@ -88,7 +85,7 @@ public class GameFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (mMode == MODE_TIMED) {
+        if (mGameMode == GameMode.TIMED) {
             mCountdownAnimator.start();
         }
     }
@@ -126,16 +123,16 @@ public class GameFragment extends Fragment {
         mScoreCount = (TextView) root.findViewById(R.id.game_score_counter);
 
         TextView remainingText = (TextView) root.findViewById(R.id.game_remaining_text);
-        switch(mMode) {
-            case MODE_MOVES:
+        switch(mGameMode) {
+            case MOVES:
                 remainingText.setText(R.string.game_moves_left);
                 mRemainingCount.setText(R.string.thirty);
                 break;
-            case MODE_TIMED:
+            case TIMED:
                 remainingText.setText(R.string.game_time);
                 mRemainingCount.setText(R.string.sixty);
                 break;
-            case MODE_ENDLESS:
+            case ENDLESS:
                 remainingText.setText(R.string.game_moves);
                 mRemainingCount.setText(R.string.zero);
                 break;
@@ -163,14 +160,14 @@ public class GameFragment extends Fragment {
     /** Increment the moves count by 1. Update UI accordingly. */
     private void incrementMoves() {
         mMoves++;
-        if (mMode == MODE_MOVES) {
+        if (mGameMode == GameMode.MOVES) {
             int remaining = 30 - mMoves;
             if (remaining > 0) {
                 mRemainingCount.setText(String.valueOf(remaining));
             } else {
                 getActivity().finish();
             }
-        } else if (mMode == MODE_ENDLESS) {
+        } else if (mGameMode == GameMode.ENDLESS) {
             mRemainingCount.setText(String.valueOf(mMoves));
         }
     }

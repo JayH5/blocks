@@ -27,9 +27,9 @@ public class TitleScreenFragment extends Fragment {
         return root;
     }
 
-    private void launchGame(int mode) {
+    private void launchGame(GameMode mode) {
         Intent intent = new Intent(getActivity(), GameActivity.class);
-        intent.putExtra(GameFragment.ARG_MODE, mode);
+        intent.putExtra(GameActivity.EXTRA_GAME_MODE, mode);
         getActivity().startActivity(intent);
     }
 
@@ -38,13 +38,13 @@ public class TitleScreenFragment extends Fragment {
         public void onClick(View view) {
             switch(view.getId()) {
                 case R.id.title_screen_btn_timed:
-                    launchGame(GameFragment.MODE_TIMED);
+                    launchGame(GameMode.TIMED);
                     break;
                 case R.id.title_screen_btn_moves:
-                    launchGame(GameFragment.MODE_MOVES);
+                    launchGame(GameMode.MOVES);
                     break;
                 case R.id.title_screen_btn_endless:
-                    launchGame(GameFragment.MODE_ENDLESS);
+                    launchGame(GameMode.ENDLESS);
                     break;
             }
         }
