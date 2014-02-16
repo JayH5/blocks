@@ -54,7 +54,7 @@ public class GridModel {
     }
 
     /** Removes a given block, "trickling down" the above blocks */
-    private void removeBlock(int index) {
+    public void removeBlock(int index) {
         for (int i = index; i >= mWidth; i -= mWidth) {
             setBlock(i, mGrid[i - mWidth]);
         }

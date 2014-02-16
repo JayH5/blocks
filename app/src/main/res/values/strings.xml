@@ -16,4 +16,19 @@
     <string name="thirty">30</string>
     <string name="sixty">60</string>
 
+    <string name="more_moves">More moves</string>
+    <string name="more_moves_message">Add 5 more moves. Can only be used once a round.</string>
+    <string name="time_stop">Time stop</string>
+    <string name="time_stop_message">Stop the clocks for 5 seconds. Can only be used once a round.</string>
+    <string name="shrinker">Shrinker</string>
+    <string name="shrinker_message">Shrink a dot off the board. Double tap a dot to quickly shrink.</string>
+    <string name="shrinker_hint1">Select a dot to have it shrink off the board.</string>
+    <string name="shrinker_hint2">Double tap a dot to quickly shrink.</string>
+    <string name="expander">Expander</string>
+    <string name="expander_message">Remove all of one colour. Can only be used once a round.</string>
+    <string name="expander_hint1">Select a colour to remove.</string>
+
+    <string name="end_game_dialog_title">Game Over</string>
+    <string name="end_game_dialog_message">You scored %d</string>
+
 </resources>

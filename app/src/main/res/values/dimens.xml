@@ -7,4 +7,6 @@
     <dimen name="game_text_size">28sp</dimen>
     <dimen name="game_counter_margin">12dp</dimen>
 
+    <dimen name="powerup_text_size">24sp</dimen>
+
 </resources>

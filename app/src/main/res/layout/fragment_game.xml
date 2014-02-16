@@ -55,4 +55,50 @@
         android:columnCount="6"
         android:rowCount="6"/>
 
+    <TextView
+        android:id="@+id/powerup_hint1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/game_grid"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/powerup_hint2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/game_grid"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_more_moves"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/more_moves"/>
+
+        <Button
+            android:id="@+id/btn_shrinkers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/shrinker"/>
+
+        <Button
+            android:id="@+id/btn_expanders"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/expander"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
