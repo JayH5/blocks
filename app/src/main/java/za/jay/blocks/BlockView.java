@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
 
 /**
@@ -15,7 +16,7 @@ public class BlockView extends View {
 
     private Paint mPaint;
     private Rect mDrawingRect;
-    private Rect mInnerRect;
+    private RectF mInnerRect;
 
     private boolean mSelected;
 
@@ -25,10 +26,10 @@ public class BlockView extends View {
     }
 
     private void init() {
-        mPaint = new Paint();
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mDrawingRect = new Rect();
-        mInnerRect = new Rect();
+        mInnerRect = new RectF();
     }
 
     @Override
@@ -50,7 +51,8 @@ public class BlockView extends View {
         if (mSelected) {
             canvas.drawRect(mDrawingRect, mPaint);
         } else {
-            canvas.drawRect(mInnerRect, mPaint);
+            canvas.drawOval(mInnerRect, mPaint);
+            //canvas.drawRect(mInnerRect, mPaint);
         }
     }
 
