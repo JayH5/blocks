@@ -142,7 +142,7 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
 
         Resources res = getResources();
         int gridWidth = res.getDisplayMetrics().widthPixels
-                - res.getDimensionPixelSize(R.dimen.activity_horizontal_margin) * 2;
+                - res.getDimensionPixelSize(R.dimen.grid_horizontal_margin) * 2;
         int cellSize = (int) (gridWidth / 6.0f);
         Context context = getActivity();
         for (int i = 0; i < WIDTH * HEIGHT; i++) {

@@ -40,9 +40,11 @@ public class BlockView extends View {
     }
 
     private void resizeInnerRect(int w, int h) {
-        int quarterW = (int) (w / 4.0f);
-        int quarterH = (int) (h / 4.0f);
-        mInnerRect.set(quarterW, quarterH, w - quarterW, h - quarterH);
+        int centerX = (int) (w / 2.0f);
+        int centerY = (int) (h / 2.0f);
+        int fifthW = Math.round(w / 5.0f);
+        int fifthH = Math.round(h / 5.0f);
+        mInnerRect.set(centerX - fifthW, centerY - fifthH, centerX + fifthW, centerY + fifthH);
     }
 
     @Override
@@ -52,7 +54,6 @@ public class BlockView extends View {
             canvas.drawRect(mDrawingRect, mPaint);
         } else {
             canvas.drawOval(mInnerRect, mPaint);
-            //canvas.drawRect(mInnerRect, mPaint);
         }
     }
 
