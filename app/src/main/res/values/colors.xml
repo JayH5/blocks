@@ -6,6 +6,8 @@
     <color name="dots_yellow">#E5D93C</color>
     <color name="dots_purple">#9660B3</color>
 
+    <color name="dots_grey">#F7F7F7</color>
+
     <integer-array name="block_colours">
         <item>@color/dots_red</item>
         <item>@color/dots_green</item>

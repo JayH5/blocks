@@ -10,5 +10,8 @@
     <dimen name="powerup_text_size">24sp</dimen>
 
     <dimen name="grid_horizontal_margin">31dp</dimen>
+    <dimen name="dots_button_bar_height">46dp</dimen>
+
+    <dimen name="default_padding">8dp</dimen>
 
 </resources>
