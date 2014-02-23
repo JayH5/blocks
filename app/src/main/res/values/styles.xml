@@ -1,8 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
     <style name="title_screen_title_style">
