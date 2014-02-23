@@ -16,7 +16,12 @@
 
     <style name="game_text">
         <item name="android:textSize">@dimen/game_text_size</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">@color/dots_grey_text</item>
+    </style>
+
+    <style name="game_counter">
+        <item name="android:textSize">@dimen/game_counter_size</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="powerup">

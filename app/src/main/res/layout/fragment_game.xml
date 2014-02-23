@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dots_button_bar_height"
         android:orientation="horizontal"
-        android:padding="@dimen/default_padding"
         android:background="@color/dots_grey">
 
         <TextView
@@ -16,6 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dots_stats_left_margin"
             style="@style/game_text"/>
 
         <TextView
@@ -24,13 +25,16 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/game_remaining_text"
             android:layout_marginLeft="@dimen/game_counter_margin"
-            style="@style/game_text"/>
+            android:layout_centerVertical="true"
+            style="@style/game_counter"/>
 
         <TextView
             android:id="@+id/game_score_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/game_score_counter"
+            android:layout_marginRight="@dimen/dots_stats_right_margin"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             style="@style/game_text"
             android:text="@string/game_score"/>
 
@@ -38,9 +42,10 @@
             android:id="@+id/game_score_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/game_counter_margin"
-            style="@style/game_text"
+            android:layout_marginLeft="@dimen/dots_stats_score_margin"
+            android:layout_toRightOf="@id/game_score_text"
+            android:layout_centerVertical="true"
+            style="@style/game_counter"
             android:text="@string/zero"/>
 
     </RelativeLayout>

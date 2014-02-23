@@ -164,10 +164,16 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
 
     /** Set up the moves/time/score counters depending on the game mode */
     private void initStatsViews(View root) {
+        Typeface josefinSans =
+                Typeface.createFromAsset(getActivity().getAssets(), "fonts/JosefinSans-Regular.ttf");
+
         mRemainingCount = (TextView) root.findViewById(R.id.game_remaining_counter);
+        mRemainingCount.setTypeface(josefinSans);
         mScoreCount = (TextView) root.findViewById(R.id.game_score_counter);
+        mScoreCount.setTypeface(josefinSans);
 
         TextView remainingText = (TextView) root.findViewById(R.id.game_remaining_text);
+        remainingText.setTypeface(josefinSans);
         switch(mGameMode) {
             case MOVES:
                 remainingText.setText(R.string.game_moves_left);
@@ -182,6 +188,9 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
                 mRemainingCount.setText(R.string.zero);
                 break;
         }
+
+        TextView scoreText = (TextView) root.findViewById(R.id.game_score_text);
+        scoreText.setTypeface(josefinSans);
     }
 
     private void initPowerups(View root) {

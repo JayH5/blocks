@@ -7,10 +7,10 @@
     <string name="moves">Moves</string>
     <string name="endless">Endless</string>
 
-    <string name="game_score">Score:</string>
-    <string name="game_moves">Moves:</string>
-    <string name="game_moves_left">Moves left:</string>
-    <string name="game_time">Time:</string>
+    <string name="game_score">Score</string>
+    <string name="game_moves">Moves</string>
+    <string name="game_moves_left">Moves Left</string>
+    <string name="game_time">Time</string>
 
     <string name="zero">0</string>
     <string name="thirty">30</string>

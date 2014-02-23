@@ -4,14 +4,16 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="title_screen_title_size">48sp</dimen>
-    <dimen name="game_text_size">28sp</dimen>
-    <dimen name="game_counter_margin">12dp</dimen>
+    <dimen name="game_text_size">13sp</dimen>
+    <dimen name="game_counter_size">24sp</dimen>
+    <dimen name="game_counter_margin">8dp</dimen>
 
     <dimen name="powerup_text_size">24sp</dimen>
 
     <dimen name="grid_horizontal_margin">31dp</dimen>
     <dimen name="dots_button_bar_height">46dp</dimen>
-
-    <dimen name="default_padding">8dp</dimen>
+    <dimen name="dots_stats_left_margin">47dp</dimen>
+    <dimen name="dots_stats_right_margin">87dp</dimen>
+    <dimen name="dots_stats_score_margin">-79dp</dimen> <!-- Ugly! -->
 
 </resources>
