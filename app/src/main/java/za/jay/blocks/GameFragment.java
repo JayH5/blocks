@@ -407,19 +407,60 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
     private void beginPath(float x, float y) {
         int index = calculateGridIndex(x, y);
         if (index >= 0 && index < mGrid.getChildCount()) {
-            BlockView block = (BlockView) mGrid.getChildAt(index);
-            block.setSelected(true);
+            selectBlock(index);
             mPath.add(index);
         }
     }
 
-    private void movePath(float x, float y) {
+    /** Mark a block as selected and link it up */
+    private void selectBlock(int index) {
+        int lastIndex = getLastPathIndex();
+        if (lastIndex >= 0) {
+            BlockView.PathDirection src = getPathDirection(index, lastIndex);
+            BlockView block = (BlockView) mGrid.getChildAt(index);
+            block.select(src);
+
+            BlockView.PathDirection dest = getPathDirection(lastIndex, index);
+            BlockView lastBlock = (BlockView) mGrid.getChildAt(lastIndex);
+            lastBlock.connectNext(dest);
+        } else {
+            BlockView block = (BlockView) mGrid.getChildAt(index);
+            block.select(null);
+        }
+    }
+
+    /** Get the index at the head of the path */
+    private int getLastPathIndex() {
         if (mPath.isEmpty()) {
-            return;
+            return -1;
+        }
+        return mPath.get(mPath.size() - 1);
+    }
+
+    private BlockView.PathDirection getPathDirection(int srcIndex, int destIndex) {
+        int srcX = srcIndex % WIDTH;
+        int destX = destIndex % WIDTH;
+        if (destX < srcX) {
+            return BlockView.PathDirection.LEFT;
+        } else if (destX > srcX) {
+            return BlockView.PathDirection.RIGHT;
         }
 
-        // Check if we're still over the same rectangle. If we still are, nothing to do
-        if (mLastHitRect.contains((int) x, (int) y)) {
+        int srcY = srcIndex / WIDTH;
+        int destY = destIndex / WIDTH;
+        if (destY < srcY) {
+            return BlockView.PathDirection.UP;
+        } else if (destY > srcY) {
+            return BlockView.PathDirection.DOWN;
+        }
+
+        return null;
+    }
+
+    private void movePath(float x, float y) {
+        if (mPath.isEmpty()
+                || mSquare
+                || mLastHitRect.contains((int) x, (int) y)) {
             return;
         }
 
@@ -440,16 +481,22 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
         if (!block.isSelected()) {
             // If not, and new block is valid link, add to path
             if (block.getColor() == lastBlock.getColor() && isAdjacent(index, lastIndex)) {
-                block.setSelected(true);
+                selectBlock(index);
                 mPath.add(index);
             }
         } else if (pathSize >= 2 && block != lastBlock) {
             // If so, either backtracking or making a closed path
-            if (index == mPath.get(pathSize - 2)) {
+            int lastLastIndex = mPath.get(pathSize - 2);
+            if (index == lastLastIndex) {
                 // Backtracking: deselect the last block and remove from path
-                lastBlock.setSelected(false);
+                lastBlock.deselect();
                 mPath.remove(pathSize - 1);
+
+                BlockView lastLastBlock = (BlockView) mGrid.getChildAt(lastLastIndex);
+                lastLastBlock.disconnectNext();
             } else if (block.getColor() == lastBlock.getColor() && isAdjacent(index, lastIndex)) {
+                block.select(getPathDirection(index, lastIndex));
+                lastBlock.connectNext(getPathDirection(lastIndex, index));
                 mSquare = true;
             }
         }
@@ -515,7 +562,7 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
     private void resetPath() {
         for (Integer index : mPath) {
             BlockView block = (BlockView) mGrid.getChildAt(index);
-            block.setSelected(false);
+            block.deselect();
         }
         mPath.clear();
     }

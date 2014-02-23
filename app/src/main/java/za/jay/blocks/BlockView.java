@@ -14,9 +14,15 @@ import android.view.View;
  */
 public class BlockView extends View {
 
+    public static enum PathDirection {
+        LEFT, RIGHT, UP, DOWN
+    }
+
     private Paint mPaint;
-    private Rect mDrawingRect;
     private RectF mInnerRect;
+
+    private Rect mSrcPathRect;
+    private Rect mDestPathRect;
 
     private boolean mSelected;
 
@@ -28,14 +34,14 @@ public class BlockView extends View {
     private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
-        mDrawingRect = new Rect();
         mInnerRect = new RectF();
+        mSrcPathRect = new Rect();
+        mDestPathRect = new Rect();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mDrawingRect.set(0, 0, w, h);
         resizeInnerRect(w, h);
     }
 
@@ -50,10 +56,10 @@ public class BlockView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawOval(mInnerRect, mPaint);
         if (mSelected) {
-            canvas.drawRect(mDrawingRect, mPaint);
-        } else {
-            canvas.drawOval(mInnerRect, mPaint);
+            canvas.drawRect(mSrcPathRect, mPaint);
+            canvas.drawRect(mDestPathRect, mPaint);
         }
     }
 
@@ -66,10 +72,70 @@ public class BlockView extends View {
         return mPaint.getColor();
     }
 
-    public void setSelected(boolean selected) {
-        if (selected != mSelected) {
-            mSelected = selected;
+    /** Select the dot with a source incoming path (may be null) */
+    public void select(PathDirection src) {
+        if (!mSelected) {
+            shapePathRectangle(src, mSrcPathRect);
+            mSelected = true;
             postInvalidate();
+        }
+    }
+
+    /** Deselect the dot, removing any paths */
+    public void deselect() {
+        if (mSelected) {
+            mSrcPathRect.setEmpty();
+            mDestPathRect.setEmpty();
+            mSelected = false;
+            postInvalidate();
+        }
+    }
+
+    /** Add a link to the next selected dot */
+    public void connectNext(PathDirection dest) {
+        if (mSelected) {
+            shapePathRectangle(dest, mDestPathRect);
+            postInvalidate();
+        }
+    }
+
+    /** Remove the link to the next dot */
+    public void disconnectNext() {
+        if (mSelected) {
+            mDestPathRect.setEmpty();
+            postInvalidate();
+        }
+    }
+
+    /** Adjust 'rect' so that it is the path going in direction 'dir' */
+    private void shapePathRectangle(PathDirection dir, Rect rect) {
+        if (dir == null) {
+            return;
+        }
+
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
+        int centerX = (int) (width / 2.0f);
+        int centerY = (int) (height / 2.0f);
+
+        int halfPathWidth;
+        switch (dir) {
+            case LEFT:
+                halfPathWidth = (int) (height / 20.0f);
+                rect.set(0, centerY - halfPathWidth, centerX, centerY + halfPathWidth);
+                break;
+            case RIGHT:
+                halfPathWidth = (int) (height / 20.0f);
+                rect.set(centerX, centerY - halfPathWidth, width, centerY + halfPathWidth);
+                break;
+            case UP:
+                halfPathWidth = (int) (width / 20.0f);
+                rect.set(centerX - halfPathWidth, 0, centerX + halfPathWidth, centerY);
+                break;
+            case DOWN:
+                halfPathWidth = (int) (width / 20.0f);
+                rect.set(centerX - halfPathWidth, centerY, centerX + halfPathWidth, height);
+                break;
         }
     }
 
