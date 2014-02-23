@@ -13,7 +13,6 @@ public class GameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
 
@@ -21,7 +20,7 @@ public class GameActivity extends Activity {
             GameMode mode = (GameMode) getIntent().getSerializableExtra(EXTRA_GAME_MODE);
             GameFragment frag = GameFragment.newInstance(mode);
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, frag)
+                    .replace(android.R.id.content, frag)
                     .commit();
         }
     }
