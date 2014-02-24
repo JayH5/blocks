@@ -11,6 +11,9 @@
     <dimen name="powerup_text_size">24sp</dimen>
 
     <dimen name="grid_horizontal_margin">31dp</dimen>
+
+    <dimen name="hint_margin">42dp</dimen>
+
     <dimen name="dots_button_bar_height">46dp</dimen>
     <dimen name="dots_stats_left_margin">47dp</dimen>
     <dimen name="dots_stats_right_margin">87dp</dimen>

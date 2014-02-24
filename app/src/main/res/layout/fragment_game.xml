@@ -66,7 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/game_grid"
-        android:visibility="invisible"/>
+        android:layout_marginBottom="@dimen/hint_margin"
+        android:visibility="invisible"
+        style="@style/powerup_hint"/>
 
     <TextView
         android:id="@+id/powerup_hint2"
@@ -74,10 +76,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/game_grid"
-        android:visibility="invisible"/>
+        android:layout_marginTop="@dimen/hint_margin"
+        android:visibility="invisible"
+        style="@style/powerup_hint"/>
 
     <LinearLayout
         style="?android:buttonBarStyle"
+        android:showDividers="none"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dots_button_bar_height"
         android:layout_alignParentBottom="true"
@@ -85,29 +90,32 @@
         android:gravity="center"
         android:background="@color/dots_grey">
 
-        <Button
+        <ImageButton
             style="?android:buttonBarButtonStyle"
             android:id="@+id/btn_more_moves"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/more_moves"/>
+            android:src="@drawable/ic_more_moves"
+            android:contentDescription="@string/more_moves"/>
 
-        <Button
+        <ImageButton
             style="?android:buttonBarButtonStyle"
             android:id="@+id/btn_shrinkers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/shrinker"/>
+            android:src="@drawable/ic_shrinker"
+            android:contentDescription="@string/shrinker"/>
 
-        <Button
+        <ImageButton
             style="?android:buttonBarButtonStyle"
             android:id="@+id/btn_expanders"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/expander"/>
+            android:src="@drawable/ic_expander"
+            android:contentDescription="@string/expander"/>
 
     </LinearLayout>
 

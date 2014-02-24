@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -49,9 +50,9 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
 
     private GestureDetector mGestureDetector;
 
-    private Button mPowerup1Button;
-    private Button mPowerup2Button;
-    private Button mPowerup3Button;
+    private ImageButton mPowerup1Button;
+    private ImageButton mPowerup2Button;
+    private ImageButton mPowerup3Button;
     private TextView mPowerupHint1;
     private TextView mPowerupHint2;
     private PowerUp mActivePowerUp;
@@ -194,15 +195,15 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
     }
 
     private void initPowerups(View root) {
-        mPowerup1Button = (Button) root.findViewById(R.id.btn_more_moves);
+        mPowerup1Button = (ImageButton) root.findViewById(R.id.btn_more_moves);
         if (mGameMode == GameMode.TIMED) {
-            mPowerup1Button.setText(R.string.time_stop);
+            //mPowerup1Button.setText(R.string.time_stop);
         } else if (mGameMode == GameMode.ENDLESS) {
             mPowerup1Button.setVisibility(View.GONE);
         }
 
-        mPowerup2Button = (Button) root.findViewById(R.id.btn_shrinkers);
-        mPowerup3Button = (Button) root.findViewById(R.id.btn_expanders);
+        mPowerup2Button = (ImageButton) root.findViewById(R.id.btn_shrinkers);
+        mPowerup3Button = (ImageButton) root.findViewById(R.id.btn_expanders);
 
         mPowerup1Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,6 +228,11 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
 
         mPowerupHint1 = (TextView) root.findViewById(R.id.powerup_hint1);
         mPowerupHint2 = (TextView) root.findViewById(R.id.powerup_hint2);
+
+        Typeface josefinSansBold =
+                Typeface.createFromAsset(getActivity().getAssets(), "fonts/JosefinSans-Bold.ttf");
+        mPowerupHint1.setTypeface(josefinSansBold);
+        mPowerupHint2.setTypeface(josefinSansBold);
     }
 
     private void showPowerupDialog(PowerUp powerUp) {
@@ -310,7 +316,7 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
         }
 
         if (mActivePowerUp != PowerUp.SHRINKERS) { // Activate
-            mPowerup2Button.setTypeface(null, Typeface.BOLD);
+            //mPowerup2Button.setTypeface(null, Typeface.BOLD);
 
             mPowerupHint1.setText(R.string.shrinker_hint1);
             mPowerupHint2.setText(R.string.shrinker_hint2);
@@ -320,7 +326,7 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
 
             mActivePowerUp = PowerUp.SHRINKERS;
         } else { // Deactivate
-            mPowerup2Button.setTypeface(null, Typeface.NORMAL);
+            //mPowerup2Button.setTypeface(null, Typeface.NORMAL);
 
             mPowerupHint1.setVisibility(View.INVISIBLE);
             mPowerupHint2.setVisibility(View.INVISIBLE);
@@ -334,14 +340,14 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
         }
 
         if (mActivePowerUp != PowerUp.EXPANDERS) { // Activate
-            mPowerup3Button.setTypeface(null, Typeface.BOLD);
+            //mPowerup3Button.setTypeface(null, Typeface.BOLD);
 
             mPowerupHint1.setText(R.string.expander_hint1);
             mPowerupHint1.setVisibility(View.VISIBLE);
 
             mActivePowerUp = PowerUp.EXPANDERS;
         } else { // Deactivate
-            mPowerup3Button.setTypeface(null, Typeface.NORMAL);
+            //mPowerup3Button.setTypeface(null, Typeface.NORMAL);
 
             mPowerupHint1.setVisibility(View.INVISIBLE);
             mActivePowerUp = null;

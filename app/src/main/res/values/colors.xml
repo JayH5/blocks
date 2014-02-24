@@ -8,6 +8,7 @@
 
     <color name="dots_grey">#F7F7F7</color>
     <color name="dots_grey_text">#303030</color>
+    <color name="dots_grey_hint_text">#7E7E7E</color>
 
     <integer-array name="block_colours">
         <item>@color/dots_red</item>
