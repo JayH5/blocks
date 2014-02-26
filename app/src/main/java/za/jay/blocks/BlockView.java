@@ -78,6 +78,9 @@ public class BlockView extends View {
             shapePathRectangle(src, mSrcPathRect);
             mSelected = true;
             postInvalidate();
+        } else if (mSrcPathRect.isEmpty()) {
+            shapePathRectangle(src, mSrcPathRect);
+            postInvalidate();
         }
     }
 
