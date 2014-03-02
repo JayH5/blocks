@@ -31,4 +31,7 @@
     <string name="end_game_dialog_title">Game Over</string>
     <string name="end_game_dialog_message">You scored %d</string>
 
+    <string name="quit_dialog_title">Quit Game</string>
+    <string name="quit_dialog_message">Are you sure you want to quit the game?</string>
+
 </resources>
