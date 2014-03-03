@@ -50,6 +50,8 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
 
     private GestureDetector mGestureDetector;
 
+    private ScoresDatabase mScoresDatabase;
+
     private ImageButton mPowerup1Button;
     private ImageButton mPowerup2Button;
     private ImageButton mPowerup3Button;
@@ -106,6 +108,8 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
                 return true;
             }
         });
+
+        mScoresDatabase = new ScoresDatabase(getActivity());
     }
 
     @Override
@@ -367,6 +371,7 @@ public class GameFragment extends Fragment implements View.OnTouchListener,
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .setCancelable(false)
                 .show();
+        mScoresDatabase.saveScoreAsync(mScore);
     }
 
     /** Add {@code points} to the score and update UI accordingly */
